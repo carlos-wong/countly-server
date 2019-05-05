@@ -2,7 +2,7 @@ version: '2'
 
 services:
   countly:
-    image: carlos-countly:0.2
+    image: carloswong1224/carlos-countly:0.1
     volumes:
     - ./data/mongodb:/var/lib/mongodb:Z
     # command: tail -f /dev/null
