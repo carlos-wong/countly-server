@@ -1,0 +1,31 @@
+version: '2'
+
+services:
+  countly:
+    image: carlos-countly:0.2
+    volumes:
+    - ./data/mongodb:/var/lib/mongodb:Z
+    # command: tail -f /dev/null
+    ports:
+    - "80:80"
+    - "6001:6001"
+    - "3001:3001"
+    links:
+    - "mongo:mongo"
+    environment:
+    - COUNTLY_CONFIG_API_MONGODB_HOST=mongo
+    - COUNTLY_CONFIG_FRONTEND_MONGODB_HOST=mongo
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1k"
+        max-file: "3"
+  mongo:
+    image: mongo:3.5
+    volumes:
+    - ./mongodb_data:/data/db
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
