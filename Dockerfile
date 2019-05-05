@@ -4,6 +4,9 @@ CMD ["/sbin/my_init"]
 
 ## Setup Countly
 ENV INSIDE_DOCKER 1
+ENV INSIDE_DOCKER_NOMONGO 1
+ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD 1
+
 
 COPY / /opt/countly
 RUN  useradd -r -M -U -d /opt/countly -s /bin/false countly && \
